@@ -7,3 +7,4 @@ description: >
     <a href="https://www.linkedin.com/in/bartłomiej-kiczek-870a77250/">See my LinkedIn profile</a>
     
 remote_theme: pages-themes/minimal@v0.2.0
+markdown: kramdown
