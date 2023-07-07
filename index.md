@@ -34,7 +34,7 @@ However finding the global minimum is usually tricky for optimization algorithms
 
 ### Results
 
-The deployment of this algorithmic solution allowed for precise localisation (less than 10cm deviation) of the users of the system.
+The deployment of this algorithmic solution allowed for precise localisation (less than 25cm deviation) of the users of the system.
 
 ### Tools
 
@@ -71,7 +71,7 @@ I achieved a huge improvement in the position designation. The mean distance bet
 
 ### Background
 
-This little side project combines web scrapping with interactive data visualisation. I made it entirely for myself for analysis of real estate price trends in my hometown. I used OLX, which is Polish craigslist counterpart, as a data source. The collected and processed data were saved to csv files, which were interpreted by a plotly dashboard app.
+This little side project combines web scrapping with interactive data visualisation. I made it entirely for myself for analysis of real estate price trends in my hometown. I used OLX, which is a popular marketplace website in Poland, as a data source. The collected and processed data were saved to csv files, which were interpreted by a plotly dashboard app.
 
 Plotly has a capability to create various dashboards for easy, from the creator’s side, presentation and effective data visualisation.
 
