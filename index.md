@@ -4,6 +4,8 @@
 
 Hereby I present projects (commercial or research) I have done in a form of short case studies - a glimpse of my professional experience.
 
+<br><br>
+
 ## Ultra-wide band localisation
 
 ### Background
@@ -43,6 +45,8 @@ The deployment of this algorithmic solution allowed for precise localisation (le
 - Mathematics
 - Deployment - FastAPI, Docker
 
+<br><br>
+
 ## Bluetooth LE beacon localisation
 
 ### Background
@@ -66,6 +70,8 @@ I achieved a huge improvement in the position designation. The mean distance bet
 
 - Python - numpy, pandas, scikit-learn, xgboost
 - R - tidyverse
+
+<br><br>
 
 ## Real estate dashboard
 
@@ -94,6 +100,8 @@ By finalising this hobby project I provided myself with a nicely presented summa
 ### Tools
 
 - Python (Beautiful soup, numpy, pandas, plotly dash)
+
+<br><br>
 
 ## RTI Reconstruction
 
@@ -125,6 +133,8 @@ The results were also published in <a href="https://www.mdpi.com/1996-1073/16/1/
 - Python - numpy, matplotlib, scikit-learn, tensorflow
 - Apache Kafka
 - Deployment - FastAPI, Docker, Azure App Service
+
+<br><br>
 
 ## Medical project - disease prediction
 
