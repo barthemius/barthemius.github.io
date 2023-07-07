@@ -52,7 +52,7 @@ In this project I was a part of a team developing an indoor localisation system 
 Given a set of hardware inside a building and a dataset, my duty was to create a machine learning solution, which could localise the user as precisely as possible.
 
 In the early stage of project I investigated the RSSI of Bluetooth (BT) signal in order to train a model, which could reproduce the distance between the user and each beacon. The task itself proved to be tricky, as BT is quite an unstable technology and some intensive data preparation was needed.
-Alternatively I created regression models (XGBoost and SVM), which were able to predict the position of the user in a given reference frame. 
+Alternatively I created regression models (XGBoost and SVM), which were able to predict the position of the user in a given reference frame.
 
 ### Results
 
@@ -116,6 +116,7 @@ The usage of neural networks incredibly increased the quality of assessed images
 <img src="images/RTI-nn.png?raw=true" />
 
 In the image above we can see a person in the room.
+The results were also published in <a href="https://www.mdpi.com/1996-1073/16/1/275">Energies</a> journal.
 
 ### Tools
 
