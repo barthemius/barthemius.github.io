@@ -1,3 +1,5 @@
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
 # Selected projects in data science, machine learning and physics
 
 Hereby I present projects (commercial or research) I have done in a form of short case studies - a glimpse of my professional experience.
