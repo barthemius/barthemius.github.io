@@ -77,13 +77,13 @@ Plotly has a capability to create various dashboards for easy, from the creator�
 
 ### Methods
 
-Web sniffer is built with Beautiful Soup 4 framework in Python. It browses several dozen of sites from “flats for sale” query, and on each site it extracts URLs to every advertisement, which are saved on a list. Then another function checks each found advertisment URL and looks for valuable information, such as size of the flat, its price, age of a building etc.
+Web sniffer is built with Beautiful Soup 4 framework in Python. It browses most populat sites from “flats for sale” query, and on each site it extracts URLs to every advertisement, which are saved on a list. Then another function checks each found advertisment URL and looks for valuable information, such as size of the flat, its price, age of a building etc.
 
 These data are collected in a tabular form and finally stored as a csv file. To prevent the sniffer from being banned by the website it takes random breaks from time to time.
 
 As I have already mention the dashboard was created using plotly. For visualisation I created a possibility to explore each time snapshot, which can be chosen from the drop-down menu on the top of the dashboard.
 
-On the other hand it has a subpage where temporal analysis of some quantities is possible.
+On the other hand I plan to add a subpage where temporal analysis of some quantities is possible.
 
 ### Results
 
