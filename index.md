@@ -2,17 +2,17 @@
 
 # Selected projects in data science, machine learning and physics
 
-Hereby I present projects (commercial or research) I have done in a form of short case studies - a glimpse of my professional experience.
+Here I present projects (commercial or research) I have done in a form of short case studies - a glimpse of my professional experience.
 
 <br><br>
 
-## Ultra-wide band localisation
+## Ultra-wide band localization
 
 ### Background
 
-Indoor localisation systems are an important part of modern technology, as they allow to track people, vehicles, assets and many more inside buildings, where GPS signal is unavailable. There is no a single solution on the market, as each deployment is different and must be consulted with client’s needs and the building in question iteslf.
+Indoor localization systems are an important part of modern technology, as they allow to track people, vehicles, assets and many more inside buildings, where GPS signal is unavailable. There is not a single solution on the market, as each deployment is different and must be consulted with client’s needs and the building in question itself.
 
-In this case, a medium-sized industrial client sought a solution which would allow tracking of forklifts and assets in a warehouse. The transmitters and anchors using UWB were proposed for this solution. My duty was to prepare algorithms which localise the transmitter given distances between it and a set of anchors placed in the building.
+In this case, a medium-sized industrial client sought a solution that would allow tracking of forklifts and assets in a warehouse. The transmitters and anchors using UWB were proposed for this purpose. My duty was to prepare algorithms which localise the transmitter given distances between it and a set of anchors placed in the building.
 
 ### Methods
 
@@ -24,19 +24,19 @@ $$
 u_{(i)}(\vec{x}_T) = (x_{a (i)} - x_{T})^2 + (y_{a (i)} - y_{T})^2 + (z_{a (i)} - z_{T})^2 - d_{(i)} ^2
 $$
 
-Naturally we do not know what are the real distances, but in ideal scenario the above residuals should be zero. We form and objective function from these residuals, by adding them for each anchor-transmitter pair
+Naturally, we do not know what are the real distances, but in ideal scenario these residuals should be zero. We form the objective function from the residuals, by adding them for each anchor-transmitter pair
 
 $$
 F(\vec{x}_T) = \sum_{i}^{N_a}{u_{(i)}(\vec{x}_T)^2}
 $$
 
-by squaring $u$ we are sure that the objective function is positive. Such function shall be minimised - the position of the transmitter is the place where the function is minimal.
+by squaring u we are sure that the objective function is positive. Such function should be minimized - the position of the transmitter is the place where the function is minimal.
 
-However finding the global minimum is usually tricky for optimization algorithms. For this reason I used unsupervised machine learning DBSCAN for outlier detection, to make sure that computed point is accurate.
+However finding the global minimum is usually tricky for optimization algorithms. For this reason I used unsupervised machine learning DBSCAN for outlier detection, to make sure that the computed point is accurate.
 
 ### Results
 
-The deployment of this algorithmic solution allowed for precise localisation (less than 25cm deviation) of the users of the system.
+The deployment of this algorithmic solution allowed for precise localization (deviation of less than 25cm) of the users of the system.
 
 ### Tools
 
@@ -47,11 +47,11 @@ The deployment of this algorithmic solution allowed for precise localisation (le
 
 <br><br>
 
-## Bluetooth LE beacon localisation
+## Bluetooth LE beacon localization
 
 ### Background
 
-In this project I was a part of a team developing an indoor localisation system for medical facilities, such as hospitals or clinics. The goal was to allow a user to navigate inside a building to a desired destination, usually a doctor’s office or patient’s room.
+In this project I was a part of a team developing an indoor localization system for medical facilities, such as hospitals or clinics. The goal was to allow a user to navigate inside a building to a desired destination, usually a doctor’s office or patient’s room.
 
 ### Methods
 
@@ -62,7 +62,7 @@ Alternatively I created regression models (XGBoost and SVM), which were able to 
 
 ### Results
 
-I achieved a huge improvement in the position designation. The mean distance between real and predicted point was less than 2m which is really tiny for this technology. Such precision allowed for a reliable determination of user’s position.
+I achieved a huge improvement in the position designation. The mean distance between the real and predicted points was less than 2m which is really tiny for this technology. Such precision allowed for a reliable determination of user’s position.
 
 <img src="images/BTLE-XGboost.png?raw=true" />
 
@@ -107,7 +107,7 @@ By finalising this hobby project I provided myself with a nicely presented summa
 
 ### Background
 
-Two previously mentioned indoor localisation techniques I worked on have a common feature - they require an active device at the user’s position. However, is it possible to localise a person that does not have any electronics with them? Yes, and we can use Radio Tomographic Imaging (RTI) for this.
+Two previously mentioned indoor localization techniques I worked on have a common feature - they require an active device at the user’s position. However, is it possible to localise a person that does not have any electronics with them? Yes, and we can use Radio Tomographic Imaging (RTI) for this.
 
 A room in question is then encircled with an assembly of radio sensors. Simply speaking, these sensors exchange packages of data and measure the received signal strength. This information can be used for determining whether a person (whose body absorbs a bit of these non-invasive electromagnetic waves) is inside.
 
@@ -148,7 +148,7 @@ The goal of this project was twofold. First, a scientific curiosity - how a mach
 
 ### Methods
 
-The dataset was relatively big (more than ten thousand records), but it had lots of missing values. It required modelling of this NA’s, for this I used kNN methods. Next I prepared three regression models based on XGBoost. While obesity diagnosis was simple enough for a linear model, remaining two diseases required more complex solution. Finally I managed to train models and acquire $R^2 > 0.975$ for each regressor.
+The dataset was relatively big (more than ten thousand records), but it had lots of missing values. It required modelling of this NA’s, for this I used kNN methods. Next I prepared three regression models based on XGBoost. While obesity diagnosis was simple enough for a linear model, remaining two diseases required more complex solution. Finally I managed to train models and acquire R^2 > 0.975 for each regressor.
 
 The explainability of XGBoost also allowed for feature importance analysis. It turned out that the most important features were age, cholesterol levels and blood pressure. This is not surprising, as these are the most common factors in the diagnosis process.
 
