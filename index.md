@@ -6,6 +6,27 @@ Here I present projects (commercial or research) I have done in a form of short 
 
 <br><br>
 
+## Contract booking prediction
+
+### Background
+
+This project was a part of a bigger assignment for a company that provides food solutions to industrial customers. The main idea was to increase the productivity of the sales department, by allowing them to focus on the negotiations that matter the most. One of the goals was to create a set of models that would predict the probability of a contract being booked in the near future, given the data of the past customer interactions.
+
+### Methods
+
+Due to the significant data issues the straightforward modeling was not possible. The dataset was highly imbalanced, with up to 20% of the contracts being booked in considered period. This required a special approach to the problem. I used over-sampling techniques, such as SMOTE, to balance the dataset. Additionally, I used a set of classification models, such as Random Forest, XGBoost and SVM, to predict the probability of booking a contract in the most accurate fashion.
+
+### Results
+
+The models were able to predict the booking probability with an accuracy of at least 0.85. This allowed the sales department to focus on the most promising negotiations. This resulted in a series of success stories, where the company managed to acquire contracts with high margins.
+
+### Tools
+
+- Python - numpy, pandas, scikit-learn, xgboost
+- SQL
+- Mathematics
+- Deployment - FastAPI, Docker, SMTP server (for sending notification newsletters)
+
 ## Ultra-wide band localization
 
 ### Background
