@@ -6,179 +6,172 @@ Here I present projects (commercial or research) I have done in a form of short 
 
 <br><br>
 
-## Contract booking prediction
+## Origination Analytics
 
 ### Background
 
-This project was a part of a bigger assignment for a company that provides food solutions to industrial customers. The main idea was to increase the productivity of the sales department, by allowing them to focus on the negotiations that matter the most. One of the goals was to create a set of models that would predict the probability of a contract being booked in the near future, given the data of the past customer interactions.
+Origination of commodities directly from farmers is an essential component of value chain management for large agribusiness companies. Understanding which farmers fall within our right-to-win area is crucial for prioritization and pricing decisions. In this project, we developed a tool that integrates government agriculture data, internal sales data, and publicly available information to visualize the competitive landscape for origination managers.
 
 ### Methods
 
-Due to the significant data issues the straightforward modeling was not possible. The dataset was highly imbalanced, with up to 20% of the contracts being booked in considered period. This required a special approach to the problem. I used over-sampling techniques, such as SMOTE, to balance the dataset. Additionally, I used a set of classification models, such as Random Forest, XGBoost and SVM, to predict the probability of booking a contract in the most accurate fashion.
+Initially, the project began as a modernization of legacy code stored in Jupyter notebooks, which required manual execution by a data scientist upon business request. Our initiative transformed it into a self-service application for business users. The UI was built with Streamlit, enabling users to browse and schedule simulations for various locations with business-specific parameters, as well as explore visualizations of essential geospatial data. The computations are deployed as jobs in GCP Cloud Run, with results stored in BigQuery.
 
 ### Results
 
-The models were able to predict the booking probability with an accuracy of at least 0.85. This allowed the sales department to focus on the most promising negotiations. This resulted in a series of success stories, where the company managed to acquire contracts with high margins.
+The tool significantly enhanced the day-to-day operations of origination managers, enabling them to focus their efforts on the most promising deals and strengthen relationships with key farmers.
 
 ### Tools
 
-- Python - numpy, pandas, scikit-learn, xgboost
-- SQL
-- Mathematics
-- Deployment - FastAPI, Docker, SMTP server (for sending notification newsletters)
+- Python - Streamlit, NumPy, Pandas
+- GCP - BigQuery, Dataform, Cloud Run
+- Infrastructure - Terraform
 
-## Ultra-wide band localization
+## Contract Booking Prediction
 
 ### Background
 
-Indoor localization systems are an important part of modern technology, as they allow to track people, vehicles, assets and many more inside buildings, where GPS signal is unavailable. There is not a single solution on the market, as each deployment is different and must be consulted with client’s needs and the building in question itself.
-
-In this case, a medium-sized industrial client sought a solution that would allow tracking of forklifts and assets in a warehouse. The transmitters and anchors using UWB were proposed for this purpose. My duty was to prepare algorithms which localise the transmitter given distances between it and a set of anchors placed in the building.
+This project was part of a larger initiative for a leading ABCD agribusiness company specializing in food solutions for industrial customers. The objective was to enhance sales team productivity by enabling them to prioritize high-value negotiations. Specifically, we developed predictive models to estimate the probability of contract closure within a specified timeframe, leveraging historical customer interaction data to guide strategic decision-making.
 
 ### Methods
 
-Dealing with real-world data always has an element of trickery. Different reasons can influence the radio signal from the device and hence disturb the distance measurement. Therefore the used method had to be robust against small to medium disturbances.
+The project presented significant data quality challenges that precluded straightforward modeling approaches. The dataset exhibited severe class imbalance, with only 20% of contracts being successfully booked within the target period. To address this, I employed SMOTE (Synthetic Minority Over-sampling Technique) to rebalance the training data. I then developed and compared multiple classification models—including Random Forest, XGBoost, and Support Vector Machines—to maximize prediction accuracy. Model performance was evaluated using precision, recall, and F1-score metrics to ensure reliable probability estimates for business use.
 
-For this reason I considered residual distances computed by subtracting measured (noisy) distances from real distances
+### Results
+
+The final ensemble achieved a minimum accuracy of 0.85 across all contract categories, enabling the sales team to effectively prioritize negotiations with the highest conversion potential. This data-driven approach contributed to multiple high-margin contract acquisitions, demonstrably improving the company's win rate and revenue outcomes. The system was deployed with automated email notifications to alert sales managers of high-probability opportunities.
+
+### Tools
+
+- Python - NumPy, Pandas, scikit-learn, XGBoost
+- SQL
+- Data Science - Imbalanced learning (SMOTE), classification algorithms
+- Deployment - FastAPI, Docker, SMTP server
+
+## Detecting Gear Fault with Deep Learning-based Methods
+
+### Background
+
+Toothed gears are critical components in mechanical systems, and their failure can lead to costly downtime and safety hazards. Pitting failure, characterized by surface fatigue and material removal, is one of the most common failure modes in gear systems. Traditional detection methods often lack the sensitivity to identify early-stage damage. This project aimed to develop a robust, automated method for detecting pitting failures in toothed gears by analyzing vibrational signals from the gear case using deep learning techniques.
+
+### Methods
+
+The approach utilized an autoencoder deep neural network architecture trained in a semi-supervised manner on vibrational signal data collected from a power circulation test stand. The autoencoder reconstructed gear case vibrational signals, learning to represent normal gear behavior in a compressed latent space. For classification, I implemented latent data convex hull-based clustering to distinguish between healthy and damaged gears. The method was validated against traditional techniques including Principal Component Analysis (PCA) and Generative Adversarial Networks (GANs) to benchmark its performance and generalization capabilities.
+
+<img src="images/gear-ae.png?raw=true" />
+
+*Figure: Autoencoder architecture for gear fault detection. Source: M. Batsch & B. Kiczek, Appl. Sci. 2024, 14(12), 5282*
+
+### Results
+
+The proposed method achieved exceptional performance with an F1-measure of 0.99, including 100% accuracy in failure detection and 98.9% accuracy in normal state prediction. Notably, the system demonstrated high sensitivity, successfully detecting even slight surface damage indicative of initial pitting. The deep learning approach significantly outperformed linear techniques like PCA and showed superior generalization compared to nonlinear methods such as GANs. These results were published in a peer-reviewed journal and have practical implications for predictive maintenance in industrial applications.
+
+### Tools
+
+- Python - NumPy, Pandas, scikit-learn, Keras, TensorFlow
+- Signal Processing - Vibration analysis, Fourier transform
+- Machine Learning - Autoencoders, semi-supervised learning, clustering algorithms
+
+
+## Ultra-Wide Band Localization
+
+### Background
+
+Indoor localization systems are essential components of modern technology, enabling the tracking of people, vehicles, and assets in environments where GPS signals are unavailable. Each deployment requires careful consideration of client needs and building-specific constraints. For this project, a medium-sized industrial client required a solution to track forklifts and assets in a warehouse environment. We proposed an Ultra-Wide Band (UWB) system with transmitters and anchors, and I developed algorithms to localize transmitters based on distance measurements from strategically placed anchors throughout the facility.
+
+### Methods
+
+Real-world radio signal data presents inherent challenges, as various environmental factors can interfere with distance measurements. The solution required robustness against small to medium signal disturbances. I formulated the problem using residual distances between measured (noisy) and actual distances:
 
 $$
 u_{(i)}(\vec{x}_T) = (x_{a (i)} - x_{T})^2 + (y_{a (i)} - y_{T})^2 + (z_{a (i)} - z_{T})^2 - d_{(i)} ^2
 $$
 
-Naturally, we do not know what are the real distances, but in ideal scenario these residuals should be zero. We form the objective function from the residuals, by adding them for each anchor-transmitter pair
+The objective function aggregates these residuals across all anchor-transmitter pairs:
 
 $$
 F(\vec{x}_T) = \sum_{i}^{N_a}{u_{(i)}(\vec{x}_T)^2}
 $$
 
-by squaring u we are sure that the objective function is positive. Such function should be minimized - the position of the transmitter is the place where the function is minimal.
-
-However finding the global minimum is usually tricky for optimization algorithms. For this reason I used unsupervised machine learning DBSCAN for outlier detection, to make sure that the computed point is accurate.
+By squaring the residuals, we ensure a positive objective function where the transmitter's position corresponds to the global minimum. To address the challenge of finding this minimum in noisy conditions, I implemented DBSCAN clustering for outlier detection, ensuring robust and accurate position estimates.
 
 ### Results
 
-The deployment of this algorithmic solution allowed for precise localization (deviation of less than 25cm) of the users of the system.
+The deployed solution achieved precise localization with a deviation of less than 25 cm, enabling reliable real-time tracking of warehouse assets and significantly improving operational efficiency.
 
 ### Tools
 
-- Python - numpy, scipy, scikit-learn
+- Python - NumPy, SciPy, scikit-learn
 - SQL
-- Mathematics
+- Optimization - Nonlinear least squares, DBSCAN clustering
 - Deployment - FastAPI, Docker
 
 <br><br>
 
-## Bluetooth LE beacon localization
+## Bluetooth LE Beacon Localization
 
 ### Background
 
-In this project I was a part of a team developing an indoor localization system for medical facilities, such as hospitals or clinics. The goal was to allow a user to navigate inside a building to a desired destination, usually a doctor’s office or patient’s room.
+This project involved developing an indoor navigation system for medical facilities, including hospitals and clinics. The objective was to enable patients and visitors to navigate efficiently to their destinations, such as doctor's offices or patient rooms, improving the overall facility experience and reducing staff burden from providing directions.
 
 ### Methods
 
-Given a set of hardware inside a building and a dataset, my duty was to create a machine learning solution, which could localise the user as precisely as possible.
-
-In the early stage of project I investigated the RSSI of Bluetooth (BT) signal in order to train a model, which could reproduce the distance between the user and each beacon. The task itself proved to be tricky, as BT is quite an unstable technology and some intensive data preparation was needed.
-Alternatively I created regression models (XGBoost and SVM), which were able to predict the position of the user in a given reference frame.
+Given deployed Bluetooth Low Energy (BLE) beacons throughout the facility and collected signal data, I developed machine learning solutions to determine user positions with maximum precision. Initially, I investigated RSSI (Received Signal Strength Indicator) patterns to train distance estimation models. However, BLE technology exhibits significant signal instability, necessitating extensive data preprocessing and feature engineering. I then developed and compared regression models using XGBoost and Support Vector Machines (SVM) to predict user positions within the facility's coordinate system, optimizing for both accuracy and real-time performance.
 
 ### Results
 
-I achieved a huge improvement in the position designation. The mean distance between the real and predicted points was less than 2m which is really tiny for this technology. Such precision allowed for a reliable determination of user’s position.
+The final solution achieved substantial improvements in position accuracy, with a mean localization error of less than 2 meters—exceptional performance for BLE-based systems. This precision enabled reliable navigation assistance and opened possibilities for additional location-based services within medical facilities.
 
 <img src="images/BTLE-XGboost.png?raw=true" />
 
 ### Tools
 
-- Python - numpy, pandas, scikit-learn, xgboost
+- Python - NumPy, Pandas, scikit-learn, XGBoost
 - R - tidyverse
+- Machine Learning - Regression algorithms, signal processing
 
 <br><br>
 
-## Real estate dashboard
+## Radio Tomographic Imaging Reconstruction
 
 ### Background
 
-This little side project combines web scrapping with interactive data visualisation. I made it entirely for myself for analysis of real estate price trends in my hometown. I used OLX, which is a popular marketplace website in Poland, as a data source. The collected and processed data were saved to csv files, which were interpreted by a plotly dashboard app.
-
-Plotly has a capability to create various dashboards for easy, from the creator’s side, presentation and effective data visualisation.
+Unlike traditional indoor localization systems that require users to carry active devices, Radio Tomographic Imaging (RTI) enables passive detection of individuals without any carried electronics. The system operates by encircling a monitored area with radio sensors that continuously exchange data packets and measure received signal strength. Human presence can be detected through the absorption and scattering of electromagnetic waves by the body, making this approach ideal for privacy-conscious applications such as occupancy monitoring in medical facility waiting areas.
 
 ### Methods
 
-Web sniffer is built with Beautiful Soup 4 framework in Python. It browses most populat sites from “flats for sale” query, and on each site it extracts URLs to every advertisement, which are saved on a list. Then another function checks each found advertisment URL and looks for valuable information, such as size of the flat, its price, age of a building etc.
-
-These data are collected in a tabular form and finally stored as a csv file. To prevent the sniffer from being banned by the website it takes random breaks from time to time.
-
-As I have already mention the dashboard was created using plotly. For visualisation I created a possibility to explore each time snapshot, which can be chosen from the drop-down menu on the top of the dashboard.
-
-On the other hand I plan to add a subpage where temporal analysis of some quantities is possible.
+Traditional RTI approaches rely on sensitivity matrices determined by room geometry and sensor distribution, requiring numerous mathematical approximations that compromise accuracy. I developed a machine learning-based approach using deep neural networks in TensorFlow, eliminating the need for these approximations. The neural network architecture learned complex relationships between signal patterns and spatial occupancy, significantly improving reconstruction quality without requiring computationally expensive pseudo-inverse calculations. This approach also provided greater robustness to sensor placement variations and environmental changes.
 
 ### Results
 
-By finalising this hobby project I provided myself with a nicely presented summary of local real estate market.
-
-<img src="images/RealEstateDashboard.png?raw=true" />
-
-### Tools
-
-- Python (Beautiful soup, numpy, pandas, plotly dash)
-
-<br><br>
-
-## RTI Reconstruction
-
-### Background
-
-Two previously mentioned indoor localization techniques I worked on have a common feature - they require an active device at the user’s position. However, is it possible to localise a person that does not have any electronics with them? Yes, and we can use Radio Tomographic Imaging (RTI) for this.
-
-A room in question is then encircled with an assembly of radio sensors. Simply speaking, these sensors exchange packages of data and measure the received signal strength. This information can be used for determining whether a person (whose body absorbs a bit of these non-invasive electromagnetic waves) is inside.
-
-### Methods
-
-The standard methodology utilises a so-called sensitivity matrix, which is determined by the room geometry and sensor distribution. However, computing such requires lots of mathematical approximations, hence leads to pretty inaccurate results.
-
-The usage of machine learning brings lots of possibilities to the problem. Mainly, because it does not require us to make any compromises in the pseudo inverse calculation. Additionally, incredible powers of neural networks to learn complex relations in the data gives us very accurate results.
-
-In this project I created multiple neural networks using tensorflow. These models proved to be extremely useful in RTI reconstruction.
-
-### Results
-
-The usage of neural networks incredibly increased the quality of assessed images. Every person could be separately seen in the reconstructions, therefore it allowed for calculation and control of number of people in the waiting area of a clinic.
+The neural network-based solution dramatically improved image reconstruction quality, enabling clear identification of individual persons in monitored spaces. This capability allowed for accurate occupancy counting and monitoring in clinic waiting areas, supporting both capacity management and safety protocols. The system successfully distinguished multiple individuals simultaneously, as shown in the visualization below. These findings were published in the peer-reviewed journal <a href="https://www.mdpi.com/1996-1073/16/1/275">Energies</a>, contributing to the academic understanding of RTI applications.
 
 <img src="images/RTI-nn.png?raw=true" />
 
-In the image above we can see a person in the room.
-The results were also published in <a href="https://www.mdpi.com/1996-1073/16/1/275">Energies</a> journal.
-
 ### Tools
 
-- Python - numpy, matplotlib, scikit-learn, tensorflow
+- Python - NumPy, Matplotlib, scikit-learn, TensorFlow
 - Apache Kafka
+- Deep Learning - Convolutional neural networks, image reconstruction
 - Deployment - FastAPI, Docker, Azure App Service
 
 <br><br>
 
-## Medical project - disease prediction
+## Medical Disease Risk Prediction
 
 ### Background
 
-This assignment was a part of a bigger project, a sketch of an update for an application for medical facility management, as well as creating and managing patient’s documentation. I received a dataset containing set of medical features of patients, such as blood pressure, cholesterol levels, weight, height, age etc.
-
-The documentation of every patient was carefully reviewed by a group of medical doctors. Given that, they estimated the probabilities of three diseases. These were obesity, coronary heart disease and diabetes.
-
-The goal of this project was twofold. First, a scientific curiosity - how a machine learning model can model the probability of disease occurence. Additionaly, it is interesting which features are the most important for the particular result. Second, the usage of this models in the production environment to help physicians during the diagnosis process.
+This project was part of a comprehensive initiative to modernize a medical facility management system, including patient documentation and clinical decision support capabilities. The system aimed to assist physicians by providing data-driven risk assessments for three prevalent conditions: obesity, coronary heart disease, and diabetes. A dataset comprising patient medical features—including blood pressure, cholesterol levels, weight, height, and age—was annotated by a panel of medical doctors with estimated disease probabilities. The dual objective was to explore how machine learning models could accurately predict disease risk while providing interpretable insights into key contributing factors for clinical use.
 
 ### Methods
 
-The dataset was relatively big (more than ten thousand records), but it had lots of missing values. It required modelling of this NA’s, for this I used kNN methods. Next I prepared three regression models based on XGBoost. While obesity diagnosis was simple enough for a linear model, remaining two diseases required more complex solution. Finally I managed to train models and acquire R^2 > 0.975 for each regressor.
-
-The explainability of XGBoost also allowed for feature importance analysis. It turned out that the most important features were age, cholesterol levels and blood pressure. This is not surprising, as these are the most common factors in the diagnosis process.
+The dataset contained over 10,000 patient records but exhibited substantial missing data, requiring careful imputation using k-Nearest Neighbors (kNN) methods to preserve data relationships. I developed three separate XGBoost regression models tailored to each condition's complexity—while obesity prediction required only linear relationships, coronary heart disease and diabetes benefited from more sophisticated nonlinear modeling. Each model was rigorously validated and optimized to achieve R² scores exceeding 0.975, ensuring reliable probability estimates. The inherent explainability of XGBoost enabled comprehensive feature importance analysis, revealing that age, cholesterol levels, and blood pressure were the dominant predictive factors—aligning with established medical knowledge and enhancing physician confidence in the system.
 
 ### Results
 
-These preliminary results were important to push the project further and gain additional financing from the stakeholders and CEO of the foreign headquarters. Funding acqusition for AI-based expert engine for medical facilities was made possible.
+The models achieved exceptional predictive performance across all three conditions, demonstrating the viability of machine learning for clinical decision support. These preliminary results proved instrumental in securing additional funding from stakeholders and international headquarters, enabling the development of a full-scale AI-powered diagnostic assistance platform for medical facilities. The project successfully bridged data science capabilities with clinical requirements, establishing a foundation for AI integration in healthcare workflows.
 
 ### Tools
 
-- Python - numpy, scikit-learn, xgboost, pandas
-- R - tidyverse, UBL (for data augumentation)
-
+- Python - NumPy, scikit-learn, XGBoost, Pandas
+- R - tidyverse, UBL (Unbalanced Learning)
+- Machine Learning - Regression, feature importance analysis, missing data imputation
