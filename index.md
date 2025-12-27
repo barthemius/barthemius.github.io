@@ -59,6 +59,8 @@ The approach utilized an autoencoder deep neural network architecture trained in
 
 <img src="images/gear-ae.png?raw=true" />
 
+*Figure: Autoencoder architecture for gear fault detection. Source: M. Batsch & B. Kiczek, Appl. Sci. 2024, 14(12), 5282*
+
 ### Results
 
 The proposed method achieved exceptional performance with an F1-measure of 0.99, including 100% accuracy in failure detection and 98.9% accuracy in normal state prediction. Notably, the system demonstrated high sensitivity, successfully detecting even slight surface damage indicative of initial pitting. The deep learning approach significantly outperformed linear techniques like PCA and showed superior generalization compared to nonlinear methods such as GANs. These results were published in a peer-reviewed journal and have practical implications for predictive maintenance in industrial applications.
